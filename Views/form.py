@@ -9,7 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from src.Controllers.UserController import *
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -24,10 +24,10 @@ class Ui_MainWindow(object):
         self.loginButton.setGeometry(QtCore.QRect(330, 170, 131, 41))
         self.loginButton.setStyleSheet("background-color: rgb(59, 146, 23);")
         self.loginButton.setObjectName("loginButton")
-        self.addLogin = QtWidgets.QLineEdit(self.centralwidget)
+        self.addLogin = QtWidgets.QTextEdit(self.centralwidget)
         self.addLogin.setGeometry(QtCore.QRect(100, 110, 261, 41))
         self.addLogin.setObjectName("addLogin")
-        self.addPassword = QtWidgets.QLineEdit(self.centralwidget)
+        self.addPassword = QtWidgets.QTextEdit(self.centralwidget)
         self.addPassword.setGeometry(QtCore.QRect(430, 110, 261, 41))
         self.addPassword.setObjectName("addPassword")
         MainWindow.setCentralWidget(self.centralwidget)
@@ -55,12 +55,27 @@ class Ui_MainWindow(object):
         self.addLogin.setPlaceholderText(_translate("MainWindow", "Введите свой логин"))
         self.addPassword.setPlaceholderText(_translate("MainWindow", "Введите свой пароль"))
 
+    #метод отработки кнопки
+    def test_button(self):
+        log = self.addLogin.toPlainText()
+        passwd = self.addPassword.toPlainText()
+        user=UserController()
+        result=user.log_in(log,passwd)
+        print(result)
+    #кнопка
+    def pressButton(self):
+        self.loginButton.clicked.connect(self.test_button)
+
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
+    login = QtWidgets.QMainWindow()
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
+    ui.pressButton()
+
+
     MainWindow.show()
     sys.exit(app.exec_())
