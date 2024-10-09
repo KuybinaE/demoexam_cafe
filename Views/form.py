@@ -62,9 +62,25 @@ class Ui_MainWindow(object):
         user=UserController()
         result=user.log_in(log,passwd)
         print(result)
+    #метод проверки логина,пароля и роли
+    #если логин и пароль верны,то проверяется роль и открывается для нее окно
+    def open_panel(self):
+        log=self.addLogin.toPlainText()
+        passwd=self.addPassword.toPlainText()
+        user=UserController()
+        if user.log_in(log,passwd):
+            if UserController.show(log).role_id.id==1:
+                print("Админ")
+            elif UserController.show(log).role_id.id==2:
+                print("Повар")
+            else:
+                print("Официант")
+        else:
+            print("Пароль или логин введены не верно")
+
     #кнопка
     def pressButton(self):
-        self.loginButton.clicked.connect(self.test_button)
+        self.loginButton.clicked.connect(self.open_panel)
 
 
 if __name__ == "__main__":

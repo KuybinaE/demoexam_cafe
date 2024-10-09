@@ -492,7 +492,6 @@ class Ui_AdminWindow(object):
         self.pushButton_8.setText(_translate("AdminWindow", "Уволить"))
         self.pushButton_9.setText(_translate("AdminWindow", "Уволить"))
 
-
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)

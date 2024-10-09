@@ -25,14 +25,17 @@ class UserController():
     def show(cls,login):
         return Users.get(Users.login==login)
 if __name__ == "__main__":
-    users = UserController()
-    print(users.log_in('admin_Ekaterina','11111'))
-    for row in users.get():
-        print(row.login)
-    # users.add('waiter_Ivan','0000','Ivan','3')
-    for row in users.get():
-        print(row.id,row.login,row.status)
-    users.update_status(9)
-    for row in users.get():
-        print(row.id,row.login,row.status)
-    print(users.show('waiter_Ivan'))
+    # users = UserController()
+    # print(users.log_in('admin_Ekaterina','11111'))
+    # for row in users.get():
+    #     print(row.login)
+    #
+    # # users.add('waiter_Ivan','0000','Ivan','3')
+    #
+    # for row in users.get():
+    #     print(row.id,row.login,row.status)
+    # users.update_status(9)
+    # for row in users.get():
+    #     print(row.id,row.login,row.status)
+    # print(users.show('waiter_Ivan'))
+    print(UserController.show('admin_Ekaterina').role_id)
