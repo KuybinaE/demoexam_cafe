@@ -17,6 +17,10 @@ def admin():
     def add_shift(date,cook_id,oficiant_1_id,oficiant_2_id):
         shift.add(date,cook_id,oficiant_1_id,oficiant_2_id)
         admin_panel.after(1000, update)
+    #функция создания смен
+    def add_shift1(date,cook,oficiant1,oficiant2):
+        shift.add(date, cook, oficiant1, oficiant2)
+        admin_panel.after(1000, update)
     #обновление окна
     def update():
         admin_panel.destroy()
@@ -164,10 +168,21 @@ def admin():
     title_cook = Label(admin_panel,text="Выберите повара")
     title_cook.grid(column = 10, row = 2)
     #вывод поваров в виде списка
-    list_cook = UserController.list_user(2)
-    combobox_cook = ttk.Combobox(values=list_cook)
-    combobox_cook.grid(column = 10,row=3)
-    admin_panel.mainloop()
+    # list_cook = UserController.list_user(2)
+    # combobox_cook = ttk.Combobox(values=list_cook,)
+    # combobox_cook.grid(column = 10,row=3)
+    # date_input=combobox_cook.get()
+    # cook_input=combobox_cook.get()
+    # oficiant1_input=combobox_cook.get()
+    # oficiant1_input=combobox_cook.get()
+    # add_shift_button = Button(admin_panel,text="Добавить смену",
+    #                          height=2,
+    #                          width=20,
+    #                          background='green',
+    #                          foreground='white',
+    #                          command=lambda: ,
+    #
 
+    admin_panel.mainloop()
 if __name__ == "__main__":
     admin()
