@@ -24,6 +24,16 @@ class UserController():
     #метод, который выводит id по имени
     def show(cls,login):
         return Users.get(Users.login==login)
+    #Вывод списка в зависимости от роль
+    @classmethod
+    def show_user(cls,role_id):
+        return Users.select().where(Users.role_id==role_id)
+    @classmethod
+    def list_user(cls,role_id):
+        list = []
+        for user in UserController.show_user(role_id):
+            list.append(user.login)
+        return list
 if __name__ == "__main__":
     # users = UserController()
     # print(users.log_in('admin_Ekaterina','11111'))
@@ -38,4 +48,7 @@ if __name__ == "__main__":
     # for row in users.get():
     #     print(row.id,row.login,row.status)
     # print(users.show('waiter_Ivan'))
-    print(UserController.show('admin_Ekaterina').role_id)
+    # print(UserController.show('admin_Ekaterina').role_id)
+    for row in UserController.show_user(3):
+        print(row.login)
+    print(UserController.list_user(3))

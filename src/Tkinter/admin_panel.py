@@ -3,8 +3,7 @@ from tkinter import *
 from src.Controllers.OrderController import OrderController
 from src.Controllers.ShiftController import ShiftController
 from src.Controllers.UserController import UserController
-
-
+from tkinter import ttk
 def admin():
     #Функционал
     #Создание диалогового окна
@@ -15,6 +14,9 @@ def admin():
     def add_user(login,name,passwd,role):
         user.add(login,passwd,name,role)
         admin_panel.after(1000,update)
+    def add_shift(date,cook_id,oficiant_1_id,oficiant_2_id):
+        shift.add(date,cook_id,oficiant_1_id,oficiant_2_id)
+        admin_panel.after(1000, update)
     #обновление окна
     def update():
         admin_panel.destroy()
@@ -116,7 +118,7 @@ def admin():
     input_password.grid(column=3, row=7)
 
     input_role = Entry(admin_panel, width=20)
-    name_input_role = Label(admin_panel, text="Введите должность")
+    name_input_role = Label(admin_panel, text="Введите id должности")
     name_input_role.grid(column=3, row=8)
     input_role.grid(column=3, row=9)
 
@@ -154,9 +156,17 @@ def admin():
                              width=20,
                              background='green',
                              foreground='white',
-                             command=lambda: add_user(input_date.get(), input_name_cook.get(),
+                             command=lambda: add_shift(input_date.get(), input_name_cook.get(),
                                                       input_oficiant1.get(), input_oficiant2.get()))
     button_add_shift.grid(column=12, row=10)
+    #вывод смен
+    #добавить смену
+    title_cook = Label(admin_panel,text="Выберите повара")
+    title_cook.grid(column = 10, row = 2)
+    #вывод поваров в виде списка
+    list_cook = UserController.list_user(2)
+    combobox_cook = ttk.Combobox(values=list_cook)
+    combobox_cook.grid(column = 10,row=3)
     admin_panel.mainloop()
 
 if __name__ == "__main__":
